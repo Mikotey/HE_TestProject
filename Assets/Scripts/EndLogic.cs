@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class EndLogic : MonoBehaviour
@@ -10,6 +11,7 @@ public class EndLogic : MonoBehaviour
   public NumberCounter[] numbersToListenTo;
   public int endCount = 10;
   public Action gameEndEvent;
+  public Image screenHider;
 
   CanvasGroup myGameOverScreen;
 
@@ -20,7 +22,8 @@ public class EndLogic : MonoBehaviour
 
   public void Quit()
   {
-    Application.Quit();
+    //Application.Quit();
+    screenHider.enabled = true;
   }
 
   void Start()
@@ -29,6 +32,7 @@ public class EndLogic : MonoBehaviour
     myGameOverScreen = GetComponent<CanvasGroup>();
     myGameOverScreen.alpha = 0;
     myGameOverScreen.blocksRaycasts = false;
+    screenHider.enabled = false;
 
     foreach (NumberCounter numberCounter in numbersToListenTo)
     {
